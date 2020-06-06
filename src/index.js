@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('../config/conf.json');
+const roles = require('./roles.js')
 
 const DOTA = config.DOTA;
 const LOL = config.LOL;
@@ -85,47 +86,14 @@ client.on('message', msg => {
       break;
 
       case `${config.prefix}dota`:
-      if (msg.channel.name == 'roles') {
-      if (msg.member.roles.cache.get(DOTA) == undefined) {
-        msg.member.roles.add([msg.guild.roles.resolve(DOTA)]);
-      }else{
-        msg.member.roles.remove([msg.guild.roles.resolve(DOTA)]);
-      }
-      }else{
-        msg.channel.send(`${msg.author} Comandos para roles en el canal de roles.`);
-      }
-      msg.delete();
-        
+        roles.altrol(msg,DOTA);
       break;
-
       case `${config.prefix}lol`:
-      if (msg.channel.name == 'roles') {
-      if (msg.member.roles.cache.get(LOL) == undefined) {
-        msg.member.roles.add([msg.guild.roles.resolve(LOL)]);
-      }else{
-        msg.member.roles.remove([msg.guild.roles.resolve(LOL)]);
-      }
-    }else{
-      msg.channel.send(`${msg.author} Comandos para roles en el canal de roles.`);
-    }
-      msg.delete();
-       
+        roles.altrol(msg,LOL);
       break;
-
       case `${config.prefix}mhw`:
-      if (msg.channel.name == 'roles') {
-        if (msg.member.roles.cache.get(MHW) == undefined) {
-          msg.member.roles.add([msg.guild.roles.resolve(MHW)]);
-        }else{
-          msg.member.roles.remove([msg.guild.roles.resolve(MHW)]);
-        }
-      }else{
-        msg.channel.send(`${msg.author} Comandos para roles en el canal de roles.`);
-      }
-      msg.delete();
-       
+        roles.altrol(msg,MHW);
       break;
-
       case `${config.prefix}debug`:
         console.log(msg.guild.roles);
         msg.delete();         
